@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <!-- Required for Mac App Store distribution -->
+    <key>com.apple.security.app-sandbox</key>
+    <true/>
+    <!-- Open documents the user explicitly chooses (Open dialog / drag / Finder) -->
+    <key>com.apple.security.files.user-selected.read-only</key>
+    <true/>
+    <!-- WKWebView's Web Content/Networking helper processes are denied under the
+         sandbox without this; without it the web content process is killed and the
+         view renders blank, even for local loadHTMLString content. -->
+    <key>com.apple.security.network.client</key>
+    <true/>
+</dict>
+</plist>

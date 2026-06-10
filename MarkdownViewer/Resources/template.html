@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>/*__MARKDOWN_CSS__*/</style>
+<style>/*__HLJS_LIGHT_CSS__*/</style>
+<style>@media (prefers-color-scheme: dark){/*__HLJS_DARK_CSS__*/}</style>
+</head>
+<body>
+<article class="markdown-body" id="content"></article>
+<script>/*__MARKED_JS__*/</script>
+<script>/*__PURIFY_JS__*/</script>
+<script>/*__HLJS_JS__*/</script>
+<script>
+(function () {
+  // The raw markdown is injected as a JSON-encoded string (XSS-safe at this layer).
+  const source = /*__MARKDOWN_SOURCE__*/ "";
+  marked.setOptions({
+    gfm: true,
+    breaks: false,
+    headerIds: true,
+    mangle: false,
+    highlight: function (code, lang) {
+      try {
+        if (lang && hljs.getLanguage(lang)) {
+          return hljs.highlight(code, { language: lang }).value;
+        }
+        return hljs.highlightAuto(code).value;
+      } catch (e) { return code; }
+    },
+  });
+  const rawHtml = marked.parse(source);
+  // Sanitize before inserting into the DOM so untrusted .md files cannot run scripts.
+  const clean = DOMPurify.sanitize(rawHtml, { USE_PROFILES: { html: true } });
+  document.getElementById("content").innerHTML = clean;
+  // highlight.js for any blocks marked.highlight missed
+  document.querySelectorAll("pre code").forEach(function (b) {
+    if (!b.classList.contains("hljs")) { try { hljs.highlightElement(b); } catch (e) {} }
+  });
+})();
+</script>
+</body>
+</html>
