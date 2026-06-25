@@ -1,0 +1,45 @@
+# --- Claude Code ---
+.claude/
+
+# --- Python virtualenv ---
+.venv/
+venv/
+__pycache__/
+*.py[cod]
+*.egg-info/
+
+# --- macOS ---
+.DS_Store
+.AppleDouble
+.LSOverride
+Icon?
+._*
+
+# --- Xcode ---
+# Build products
+build/
+DerivedData/
+*.xcarchive
+
+# Per-user Xcode state (keep the shared project, drop personal UI/layout state)
+xcuserdata/
+*.xcuserstate
+*.xcuserdatad/
+
+# Xcode workspace user settings
+*.xcworkspace/xcshareddata/swiftpm/configuration/registries.json
+*.xcworkspace/xcuserdata/
+
+# Swift Package Manager
+.swiftpm/
+.build/
+
+# CocoaPods / Carthage (not used now, harmless to pre-ignore)
+Pods/
+Carthage/Build/
+
+# --- Misc / tooling ---
+*.log
+*.tmp
+.idea/
+.vscode/
